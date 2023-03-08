@@ -205,6 +205,8 @@ class Bvh:
             #joint_index = list(self.joints.values()).index(joint)
             p[joint_index] = p_parent + M_parent.dot(joint.offset)
             r[joint_index] = mat2euler(M_parent)
+            #print(f"{currentFrame}: r[{joint_index}]: {r[joint_index]}, M_parent: {M_parent}")
+            #print(f"{currentFrame}: p[{joint_index}]: {p[joint_index]}")
             return index_offset
 
         if joint.rotation_animated():
@@ -214,16 +216,64 @@ class Bvh:
 
         M = M_parent.dot(M_rotation)
         position = p_parent + M_parent.dot(joint.offset) + offset_position
-
+        #print(f"{currentFrame}: M_{joint_index}: {M}")
+        #print(f": M_mat2euler: {mat2euler(M)}")
         rotation = np.rad2deg(mat2euler(M))
+
         #joint_index = list(self.joints.values()).index(joint)
         p[joint_index] = position
         r[joint_index] = rotation
+        #print(f"{currentFrame}: r[{joint_index}]: {rotation}, M_parent: {M_parent}, M_rotation: {M_rotation}")
+        #print(f"{currentFrame}: p[{joint_index}]: {position}")
+
 
         for c in joint.children:
             index_offset = self._recursive_apply_frame(c, frame_pose, index_offset, p, r, M, position, currentFrame)
 
         return index_offset
+
+    def _recursive_apply_frame_local(self, joint, frame_pose, index_offset, p_local, r_local, M_parent, p_parent, currentFrame):
+        if joint.position_animated():
+            offset_position, index_offset = self._extract_position(joint, frame_pose, index_offset)
+        else:
+            offset_position = np.zeros(3)
+
+        joint_index = list(self.joints.values()).index(joint)
+
+        if currentFrame == 0:
+            if joint.parent:
+                self.node_and_parent_indices[joint_index] = ([joint.index, joint.parent.index])
+            else:
+                self.node_and_parent_indices[joint_index] = ([joint.index, -1])
+
+        if len(joint.channels) == 0:
+            #joint_index = list(self.joints.values()).index(joint)
+            p_local[joint_index] = joint.offset       #p[joint_index] = p_parent + M_parent.dot(joint.offset)
+            r_local[joint_index] = np.zeros(3)                     #r[joint_index] = mat2euler(M_parent)
+            #print(f"Joint Channels Empty!! Joint: {joint}")
+            return index_offset
+
+        if joint.rotation_animated():
+            M_rotation, index_offset = self._extract_rotation(frame_pose, index_offset, joint)
+        else:
+            M_rotation = np.eye(3)
+
+        M = M_rotation                                             #M = M_parent.dot(M_rotation)
+        position = offset_position + joint.offset;                 #position = p_parent + M_parent.dot(joint.offset) + offset_position
+
+        if np.count_nonzero(offset_position) == 3 and np.count_nonzero(joint.offset)==3: #####
+            print(f"WARNING!! Joint have position offset at {joint} ({offset_position},{joint.offset}), file name: {self.filename}") #####
+        rotation = np.rad2deg(mat2euler(M))
+        #joint_index = list(self.joints.values()).index(joint)
+        p_local[joint_index] = position
+        r_local[joint_index] = rotation
+        #print(f"{currentFrame}: r_local[{joint_index}]:  {r_local[joint_index]}")
+        #print(f"{currentFrame}: p_local[{joint_index}]:  {p_local[joint_index]}")
+        for c in joint.children:
+            index_offset = self._recursive_apply_frame_local(c, frame_pose, index_offset, p_local, r_local, M, position, currentFrame)
+
+        return index_offset
+
 
     def frame_pose(self, frame):
         p = np.empty((len(self.joints), 3))
@@ -243,13 +293,14 @@ class Bvh:
         p = np.empty((len(self.joints), 3))
         r = np.empty((len(self.joints), 3))
         frame_pose = self.keyframes[frame]
+        #print(f"frame_pose: {frame_pose}")
         M_parent = np.zeros((3, 3))
         M_parent[0, 0] = 1
         M_parent[1, 1] = 1
         M_parent[2, 2] = 1
         if frame == 0:
             self.node_and_parent_indices = np.empty((len(self.joints), 2))
-        self._recursive_apply_frame(self.root, frame_pose, 0, p, r, M_parent, np.zeros(3), frame)
+        self._recursive_apply_frame_local(self.root, frame_pose, 0, p, r, M_parent, np.zeros(3), frame)
 
         return p, r
 
@@ -329,11 +380,11 @@ def get_position_and_rotation(self):
     return self.positions, self.rotations
 
 def get_local_position_and_rotation(self):
-    #print(f"file name: {self.filename}, frames: {self.frames},  fps: {self.fps}")
+    print(f"file name: {self.filename}, frames: {self.frames},  fps: {self.fps}")
     self.positions = []
     self.rotations = []
     for i in range(self.frames):
-        positions, rotations = self.frame_pose(i)
+        positions, rotations = self.frame_pose_local(i)
         self.positions.append(positions)
         self.rotations.append(rotations)
         for p in positions:
@@ -345,6 +396,7 @@ def get_local_position_and_rotation(self):
             self.box_range['max'][1] = max(self.box_range['max'][1], p[1])
             self.box_range['max'][2] = max(self.box_range['max'][2], p[2])
 
+    #print(f"i: {i}, box range: {self.box_range} \n p: {self.positions}")
     #print(f"i: {i}, box range: {self.box_range} \n p: {self.positions}, \n r: {self.rotations}")
     return self.positions, self.rotations
 
@@ -352,6 +404,7 @@ def get_local_position_and_rotation(self):
 if __name__ == '__main__':
     anim = get_bvh("bvhData/example.bvh")
     get_position_and_rotation(anim)
+    get_local_position_and_rotation(anim)
     #print(f"parent indices: {anim.node_and_parent_indices}")
 
     # # create Bvh parser

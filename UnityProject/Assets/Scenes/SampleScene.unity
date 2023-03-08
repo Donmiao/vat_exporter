@@ -123,6 +123,56 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &81299917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 81299919}
+  - component: {fileID: 81299918}
+  m_Layer: 0
+  m_Name: VATObject_local (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &81299918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81299917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fdf1eeb90334243b1581f4cfba77b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertex_texture: {fileID: 2800000, guid: 7837d6579ef3a4437bdb5f4e44be8eee, type: 3}
+  rotation_texture: {fileID: 2800000, guid: e5175d0d364704090868cf79362a4b3d, type: 3}
+  currentFrame: 0
+  displayColour: {r: 0, g: 0, b: 1, a: 1}
+  updateInterval: 0.17
+  isLocalTexture: 1
+--- !u!4 &81299919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81299917}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &312152891
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &312152892
 Transform:
   m_ObjectHideFlags: 0
@@ -167,8 +217,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fdf1eeb90334243b1581f4cfba77b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vertex_texture: {fileID: 2800000, guid: cde871050ceae4896a326b2015209f40, type: 3}
+  vertex_texture: {fileID: 2800000, guid: ea467b5ffffe14e52b7c33956be481fd, type: 3}
+  rotation_texture: {fileID: 0}
+  currentFrame: 0
+  displayColour: {r: 0, g: 0, b: 1, a: 1}
   updateInterval: 0.5
+  isLocalTexture: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 25, z: -55.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -560,7 +614,7 @@ GameObject:
   - component: {fileID: 977326790}
   - component: {fileID: 977326789}
   m_Layer: 0
-  m_Name: VATObject (1)
+  m_Name: VATObject_world
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,7 +633,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertex_texture: {fileID: 2800000, guid: f9038b916824f427783307b1a82d4aac, type: 3}
-  updateInterval: 0.1
+  rotation_texture: {fileID: 0}
+  currentFrame: 0
+  displayColour: {r: 1, g: 0.94763035, b: 0, a: 1}
+  updateInterval: 0.17
+  isLocalTexture: 0
 --- !u!4 &977326790
 Transform:
   m_ObjectHideFlags: 0
@@ -588,7 +646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977326788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.055251, y: 1.5273921, z: -7.698334}
+  m_LocalPosition: {x: 0, y: 25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -606,7 +664,7 @@ GameObject:
   - component: {fileID: 1487555640}
   - component: {fileID: 1487555639}
   m_Layer: 0
-  m_Name: VATObject (2)
+  m_Name: VATObject_local
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,8 +682,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fdf1eeb90334243b1581f4cfba77b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vertex_texture: {fileID: 2800000, guid: 89d035b7ab49041c78a33125fa4cfcca, type: 3}
-  updateInterval: 0.5
+  vertex_texture: {fileID: 2800000, guid: 99101dadb334d405fba58b7e5ee6c793, type: 3}
+  rotation_texture: {fileID: 2800000, guid: d79e4155b785a451b84c064b6062b853, type: 3}
+  currentFrame: 0
+  displayColour: {r: 0, g: 0, b: 1, a: 1}
+  updateInterval: 0.17
+  isLocalTexture: 1
 --- !u!4 &1487555640
 Transform:
   m_ObjectHideFlags: 0
@@ -634,7 +696,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487555638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.055251, y: 1.5273921, z: -7.698334}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
