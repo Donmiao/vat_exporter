@@ -42,6 +42,7 @@ public struct bvhMeta
         rawPixelData_vertex = vertex_texture.GetPixels();
         WorldPosition = new Vector3[height * width];
         localToWorldRotation_M = new Matrix4x4[height * width];
+        Debug.Log(vertex_texture.name + ": W /H = " + vertex_texture.width + "/ " + vertex_texture.height);
 
         // Compute World position from local offsets of both Rotation texture and Position texture if using local animation textures.
         if (isLocalTexture)
@@ -120,18 +121,20 @@ public struct bvhMeta
             {
                 for (int j = 0; j < width; j++)
                 {
+                    
                     int index_node = (int)Mathf.Round((rawPixelData_vertex[j][0] * 1000.0f) - 1.0f);
+                    if ((height - i) * width + index_node >= rawPixelData_vertex.Length)
+                        continue;
                     //int index_parent = (int)Mathf.Round((rawPixelData_vertex[j][1] * 1000.0f) - 1.0f);
-
+                    Debug.Log("i: " + i + ", height:" + height + ", rawPixelData_vertex: " + rawPixelData_vertex.Length+", index: "+ ((height - i) * width + index_node).ToString() + "index_node: "+ index_node);
                     var col_vert = rawPixelData_vertex[(height - i) * width + index_node];
+                    if(i * width + index_node< WorldPosition.Length)
                     WorldPosition[i * width + index_node] = new Vector3(col_vert.r - 0.5f, col_vert.g - 0.5f, col_vert.b - 0.5f) * 100.0f;
 
                 }
             }
 
         }
-
-        Debug.Log( vertex_texture.name + ": W /H = " + vertex_texture.width + "/ " + vertex_texture.height);
 
     }
     public static Quaternion QuaternionFromMatrix(Matrix4x4 m)

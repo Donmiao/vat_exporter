@@ -1,13 +1,8 @@
 ﻿<Properties StartupConfiguration="{5B580621-09B4-68CB-B5F4-5B9DD210A60F}|">
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="7321f663-754a-42ae-bc98-f07ae7e58345" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/VATResolver.cs">
     <Files>
-      <File FileName="Assets/VATResolver.cs" Line="289" Column="28" />
+      <File FileName="Assets/VATResolver.cs" Line="115" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,5 +14,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="42f10a7a-3cad-456a-a7e3-e4ea2ea62aa3" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MultiItemStartupConfigurations />
 </Properties>

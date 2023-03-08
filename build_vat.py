@@ -92,7 +92,7 @@ def produce_bvh_texture(data_path, output_path="./output/"):
         positions, rotations = get_position_and_rotation(anim)
         box = anim.box_range
         # print(f"file name: {anim.filename}, frame counts: {anim.frames}, \nbox:{box}, \n nodes and parent index: {anim.node_and_parent_indices} ")
-
+        print(f"file name: {anim.filename}, frame counts: {anim.frames}")
         max_vertex_count = len(positions[0])
 
         # model_count = len(models)
@@ -269,5 +269,5 @@ def produce_local_bvh_texture(data_path, output_path="./output/"):
 
 
 if __name__ == '__main__':
-    produce_bvh_texture('bvhData/data', './UnityProject/Assets/bvh/world')
-    produce_local_bvh_texture('bvhData/data', './UnityProject/Assets/bvh/local')
+    produce_bvh_texture('bvhData', './UnityProject/Assets/bvh/world')
+    produce_local_bvh_texture('bvhData', './UnityProject/Assets/bvh/local')
