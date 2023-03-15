@@ -380,7 +380,7 @@ def get_position_and_rotation(self):
     return self.positions, self.rotations
 
 def get_local_position_and_rotation(self):
-    print(f"file name: {self.filename}, frames: {self.frames},  fps: {self.fps}")
+    #print(f"file name: {self.filename}, frames: {self.frames},  fps: {self.fps}")
     self.positions = []
     self.rotations = []
     for i in range(self.frames):

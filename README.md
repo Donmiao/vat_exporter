@@ -6,7 +6,9 @@
 - Extract skeleton information and calculate the full pose of each keyframe
 - Generate local and world space animation textures where the y-axis represents temporal info and the x-axis represents the position (or rotation) of each node. 
 (Four textures could be generated from each bvh file: local /world rotation texture, and local/ world position texture.)
-- Verify the generated textures by converting them back to animations, and display the animations in a Unity project.
+- Slice animations into uniform small animation clips, using overlapping frames to enlarge the datasets and downsample the frame rate to extract the key information, also enlarge the dataset (for instance, frame 0, 2, 4, 6... for clip1, and 1, 3, 5, 7... for clip2 when down sampling FPS to half).
+
+Reconstruct and verify the generated textures by converting them back to animations, and display the animations in a Unity project.
 
 
 # How to use 
@@ -18,7 +20,7 @@
 3. Run the python script “build_vat.py”, and the output files will be saved to “/UnityProject/Assets/bvh/local” or “/UnityProject/Assets/bvh/world”.
 
 
-## Verify animation texture in Unity
+## Reconstruct animation texture in Unity
 
 1. Import and open /UnityProject
 2. Open Assets/Scenes/SampleScene and run to display the verification demo; or create an empty gameObject and add script “VAT Resolver ” as a new component. Modify the value of vertex_texture and Rotation_texture.

@@ -196,10 +196,11 @@ public struct bvhMeta
                 displayColour);
 
                 currentFrame = Math.Clamp(currentFrame, 0, height - 1);
-                Debug.DrawLine(
-                WorldPosition[(int)currentFrame * width + index_node] + transform.position,
-                WorldPosition[(int)currentFrame * width + index_parent] + transform.position,
-                Color.red);               
+                if (currentFrame > 0)
+                    Debug.DrawLine(
+                    WorldPosition[(int)currentFrame * width + index_node] + transform.position,
+                    WorldPosition[(int)currentFrame * width + index_parent] + transform.position,
+                    Color.red);               
               }
          }
         
