@@ -29,6 +29,6 @@ Reconstruct and verify the generated textures by converting them back to animati
 <img width="301" alt="Screenshot 2023-03-08 at 03 59 35" src="https://user-images.githubusercontent.com/29623574/223616400-e06422fe-70a8-405b-b2f5-cdb41614bee9.png">
 3. Make sure the verified textures are configured as the example:
 <img width="294" alt="Screenshot 2023-03-08 at 04 00 09" src="https://user-images.githubusercontent.com/29623574/223616408-560510a2-0201-45b8-aae0-303695faa1fe.png">
-4. Feel free to drag and change the value of "current frame" to display the static skeleton of specific frame.
-   <img width="775" alt="Screenshot 2023-08-05 at 18 56 28" src="https://github.com/Donmiao/vat_exporter/assets/29623574/30630827-b5be-4819-94fd-861aa67202fa">
+4. Drag and change the value of the "current frame" to display the static skeleton of a specific frame.
+<img width="775" alt="Screenshot 2023-08-05 at 18 56 28" src="https://github.com/Donmiao/vat_exporter/assets/29623574/8d607f89-01ce-4523-8295-18d343d9a7a0">
 
